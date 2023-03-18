@@ -1,0 +1,15 @@
+{% include 'layouts/include/head.html'%}
+<body>
+    {% include 'layouts/include/messages.html' %}
+
+{% include 'layouts/include/header.html'%}
+<main id="main" class="main">
+    {% include 'layouts/include/messages.html' %}
+
+{% block content %}
+{% endblock %}
+</main>
+</body>
+
+{%include 'layouts/include/footer.html'%}
+{%include 'layouts/include/script_bottom.html'%}
