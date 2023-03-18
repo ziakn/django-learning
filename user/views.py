@@ -43,11 +43,13 @@ def register(request):
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         if User.objects.filter(username=username).exists():
-            return render(request, 'user/register.html', {'error': 'Username already exists'})
+            messages.error(request, "User Allready exist" )
+            return render(request, 'user/register.html')
         else:
             user = User.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
             user = authenticate(username=username, password=password)
             login(request, user)
+            messages.success(request, "Registered Successfull" )
             return redirect('user:profile')
     return render(request, 'user/register.html')
 
