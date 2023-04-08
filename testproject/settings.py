@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
+import testproject.helpers as helpers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django_dump_die',
+    'django_dump_die',
     'user',
+    'image',
 ]
 
 MIDDLEWARE = [
@@ -51,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'testproject.middleware.AuthRequiredMiddleware',
-    # 'django_dump_die.middleware.DumpAndDieMiddleware',
+    'django_dump_die.middleware.DumpAndDieMiddleware',
 ]
 
 ROOT_URLCONF = 'testproject.urls'

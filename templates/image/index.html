@@ -1,0 +1,75 @@
+{% extends 'layouts/master.html' %}
+
+{% block title %}Image{% endblock %}
+
+{% block content %}
+<div class="pagetitle">
+    <h1>Cards</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Components</li>
+        <li class="breadcrumb-item active">Cards</li>
+      </ol>
+  <div class="mb-3">
+    <form method="post" action="{% url 'image:store' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+  <div class="input-group">
+    <input type="file" class="form-control" name="image" id="formFile" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+    <input type="text" class="form-control" name="title" id="formFile" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+  <button class="btn btn-primary" type="submit">Save</button>
+
+  </div>
+</form>
+</div>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row align-items-top">
+      {% for item in page_obj %}
+      <div class="col-lg-3">
+        <li class="list-group-item">{{ item.id }}</li>
+        <!-- Card with an image on top -->
+        <div class="card">
+          <img src="/static/assets/img/card.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card with an image on top</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% include "components/pagination.html" %}
+       {% comment %} <div class="col-lg-3">
+        <div class="card">
+          <img src="/static/assets/img/card.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card with an image on top</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card">
+          <img src="/static/assets/img/card.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card with an image on top</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card">
+          <img src="/static/assets/img/card.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card with an image on top</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div> {% endcomment %}
+    </div>
+  </section>
+
+
+{% endblock %}

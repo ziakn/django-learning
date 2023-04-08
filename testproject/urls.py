@@ -23,6 +23,7 @@ urlpatterns = [
     path('login/', TemplateView.as_view(template_name='user/login.html'), name='login'),
     
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
-    path('user/', include(('user.urls', 'user'), namespace='user'))
+    path('user/', include(('user.urls', 'user'), namespace='user')),
+    path('image/', include(('image.urls', 'image'), namespace='image'))
     
 ]

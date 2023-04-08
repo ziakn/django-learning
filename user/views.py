@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 # from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.contrib import messages #import messages
+from django.core.files.storage import FileSystemStorage
 
 
 def index(request):
@@ -56,4 +57,13 @@ def register(request):
 # @login_required
 def profile(request):
     data =request.user
+    if request.method == 'POST':
+        myfile = request.FILES['myfile']
+        fs = FileSystemStorage();
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        return render(request, 'core/simple_upload.html', {
+            'uploaded_file_url': uploaded_file_url
+        })
+
     return render(request, 'user/profile.html',{'data':data})
