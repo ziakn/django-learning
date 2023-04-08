@@ -8,7 +8,7 @@ from testproject.helpers import HelperClass
 from django.core.paginator import Paginator
 
 def index(request):
-    data=Image.objects.all().order_by("id")
+    data=Image.objects.all().order_by("-id")
     paginator = Paginator(data, per_page=2)
     page = request.GET.get('page', 1)
     page_object = paginator.get_page(page)
@@ -28,7 +28,8 @@ def store(request):
         filename, file_extension = os.path.splitext(image.name)
         secret_range  = secrets.SystemRandom()
         salt=secret_range.randrange(100000, 999999)
-
+        if not title:
+            title = filename
         obj = Image(author=request.user.id, title=title,filename=image.name, salt=salt, status=1, extension=file_extension)
         obj.save()
         date = obj.created_at
@@ -36,7 +37,7 @@ def store(request):
         # path ='media/files/images/'+date.year+'/'+date.month+'/'+date.day+'/'+date.strftime("%f")+'-'+obj.salt+'/'+date.year+date.month+date.day+'_'+date.strftime("%f")+'-'+obj.extension
         fs =FileSystemStorage(location=path)
         uploadfilename = fs.save(image.name,image)
-        dd(  path)
+        # dd(  path)
         # object = Image()
         # object.save()
     # return render(request,'user/index.html')
