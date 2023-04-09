@@ -12,8 +12,10 @@ def index(request):
     paginator = Paginator(data, per_page=2)
     page = request.GET.get('page', 1)
     page_object = paginator.get_page(page)
+    for item in page_object:
+        item.src = HelperClass.genrate_image_path(item)
     context = {"page_obj": page_object}
-    # HelperClass.genrrate_image_path(data)
+    # HelperClass.genrate_image_path(data)
     return render(request,'image/index.html', context)
 
 # def create(request):
@@ -36,7 +38,7 @@ def store(request):
         path ='media/files/images/'+str(date.year)+'/'+str(date.month)+'/'+str(date.day)+'/'+str(date.strftime("%f"))+'-'+str(obj.salt)+'/'+str(date.year)+str(date.month)+str(date.day)+'_'+str(date.strftime("%f"))+'-'+str(obj.salt)
         # path ='media/files/images/'+date.year+'/'+date.month+'/'+date.day+'/'+date.strftime("%f")+'-'+obj.salt+'/'+date.year+date.month+date.day+'_'+date.strftime("%f")+'-'+obj.extension
         fs =FileSystemStorage(location=path)
-        uploadfilename = fs.save(image.name,image)
+        uploadfilename = fs.save((str(date.year)+str(date.month)+str(date.day)+'_'+str(date.strftime("%f"))+'-'+str(obj.salt)+'.'+file_extension),image)
         # dd(  path)
         # object = Image()
         # object.save()

@@ -10,5 +10,7 @@ class HelperClass:
         return a + b
 
     @staticmethod
-    def genrrate_image_path(item):
-        return item
+    def genrate_image_path(obj):
+        date = obj.created_at
+        path ='media/files/images/'+str(date.year)+'/'+str(date.month)+'/'+str(date.day)+'/'+str(date.strftime("%f"))+'-'+str(obj.salt)+'/'+str(date.year)+str(date.month)+str(date.day)+'_'+str(date.strftime("%f"))+'-'+str(obj.salt)+'/'+str(date.year)+str(date.month)+str(date.day)+'_'+str(date.strftime("%f"))+'-'+str(obj.salt)+'.'+obj.extension
+        return path
