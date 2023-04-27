@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_dump_die',
     'user',
     'image',
+    'category',
 ]
 
 MIDDLEWARE = [

@@ -96,3 +96,7 @@ def store(request):
 #         })
 
 #     return render(request, 'user/profile.html',{'data':data})
+
+def delete(request,id):
+    Image.objects.filter(id=id).delete()
+    return redirect('image:index')

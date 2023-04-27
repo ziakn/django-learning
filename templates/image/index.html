@@ -30,18 +30,17 @@
       {% for item in page_obj %}
       <div class="col-lg-3">
        
-        <li class="list-group-item">{{ item.id }}</li>
+        {% comment %} <li class="list-group-item">{{ item.id }}</li> {% endcomment %}
         <!-- Card with an image on top -->
         <div class="card">
+
           <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown button
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+              <i class="bi bi-three-dots-vertical dropdown-toggle" data-bs-toggle="dropdown"></i>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'image:delete' id=item.id %}">deleted</a></li>
+              {% comment %} <li><a class="dropdown-item" href="#">Link 2</a></li>
+              <li><a class="dropdown-item" href="#">Link 3</a></li> {% endcomment %}
+            </ul>
           </div>
           <img src="{{ item.src }}" class="card-img-top" alt="...">
           <div class="card-body">

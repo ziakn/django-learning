@@ -13,7 +13,7 @@ urlpatterns = [
     # path('profile/', views.profile, name='profile'),
     # path('show/', views.show_emp, name='show-emp'),
     # path('edit/<int:pk>', views.edit_emp, name='edit-emp'),
-    # path('remove/<int:pk>', views.remove_emp, name='remove-emp'),
+    path('delete/<id>', views.delete, name='delete'),
 ]
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
